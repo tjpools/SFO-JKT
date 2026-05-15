@@ -1,0 +1,21 @@
+{
+  "name": "GreenYellowFlight",
+  "background": "#001010",
+  "foreground": "#E5F7C0",
+  "black":      "#000000",
+  "red":        "#FF5F5F",
+  "green":      "#8FD14F",
+  "yellow":     "#F5E663",
+  "blue":       "#4FB3FF",
+  "purple":     "#C792EA",
+  "cyan":       "#7FDBFF",
+  "white":      "#E5F7C0",
+  "brightBlack":  "#555555",
+  "brightRed":    "#FF7B7B",
+  "brightGreen":  "#A8E65C",
+  "brightYellow": "#FFF176",
+  "brightBlue":   "#64C7FF",
+  "brightPurple": "#D1A9FF",
+  "brightCyan":   "#9AE6FF",
+  "brightWhite":  "#FFFFFF"
+}
