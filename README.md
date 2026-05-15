@@ -1,157 +1,268 @@
+<div align="center">
+
 # ✈️ SFO-JKT Flight Tracker
+
+**A Personal Flight Tracking Toolchain**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![PowerShell 5.1+](https://img.shields.io/badge/powershell-5.1+-blue.svg)](https://github.com/PowerShell/PowerShell)
-[![GitHub repo](https://img.shields.io/badge/GitHub-tjpools%2FSFO--JKT-green.svg)](https://github.com/tjpools/SFO-JKT)
+[![CI Status](https://img.shields.io/badge/CI-GitHub_Actions-brightgreen.svg)](.github/workflows/test.yml)
+[![pip install](https://img.shields.io/badge/pip-installable-blue.svg)](#-installation)
 
-A complete flight tracking system for the **San Francisco ✈️ Jakarta** route via Tokyo, built in **Python** and **PowerShell** with beautiful terminal output, timezone conversions, delay tracking, and route visualizations.
+*A complete flight tracking system for the **San Francisco ✈️ Jakarta** route via Tokyo*
 
-> **Route**: SFO → HND → CGK → HND → SFO  
-> **Dates**: July 2-3, 2026 (Outbound) | July 19-20, 2026 (Return)  
-> **Airline**: All Nippon Airways (ANA)
+**Built with Python & PowerShell • Zero-config • Terminal-first • Timezone-aware**
+
+</div>
 
 ---
 
-## 📸 Screenshots
+<div align="center">
+
+**Route**: SFO → HND → CGK → HND → SFO  
+**Dates**: July 2-3, 2026 (Outbound) | July 19-20, 2026 (Return)  
+**Airline**: All Nippon Airways (ANA)  
+**Mission**: Track, visualize, and analyze your itinerary from the command line
+
+[Quick Start](#-quick-start) • [Installation](#-installation) • [Features](#-features) • [Documentation](#-documentation)
+
+</div>
+
+---
+
+## 📸 Output Preview
+
+<details>
+<summary><b>🐍 Python Tracker</b> (click to expand)</summary>
 
 ```
 🛫🛫🛫🛫🛫🛫 FLIGHT TRACKER APPLICATION 🛬🛬🛬🛬🛬🛬
 
+══════════════════════════════════════════════════════════════════════
+
+OUTBOUND FLIGHTS:
+
 FLIGHT ANA 107 — SFO → HND
 Departure : Jul 02, 01:40 AM PDT → Arrival : Jul 03, 04:25 AM JST
 Duration  : 10h 45m | Seats : 34A, 34C | Status : ✅ Arrived
+
+LAYOVER: 5h 50m in Tokyo (HND)
+
+FLIGHT ANA 855 — HND → CGK
+Departure : Jul 03, 10:15 AM JST → Arrival : Jul 03, 04:00 PM WIB
+Duration  : 7h 45m | Seats : 21A, 21B | Status : ✅ Arrived
+
+══════════════════════════════════════════════════════════════════════
+
+Summary Table:
+┏━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┓
+┃ Flight    ┃ Route       ┃ Departure           ┃ Arrival             ┃ Duration ┃ Seats  ┃
+┡━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━┩
+│ ANA 107   │ SFO → HND   │ Jul 02, 01:40 AM    │ Jul 03, 04:25 AM    │ 10h 45m  │ 34A,   │
+│           │             │ PDT                 │ JST                 │          │ 34C    │
+│ ANA 855   │ HND → CGK   │ Jul 03, 10:15 AM    │ Jul 03, 04:00 PM    │ 7h 45m   │ 21A,   │
+│           │             │ JST                 │ WIB                 │          │ 21B    │
+└───────────┴─────────────┴─────────────────────┴─────────────────────┴──────────┴────────┘
 ```
+</details>
 
-## 📦 What's Included
+<details>
+<summary><b>⚡ PowerShell Tracker</b> (click to expand)</summary>
 
-### Python Version
-- `flight_tracker.py` - Full-featured Python app with timezone support
-- `requirements.txt` - Python dependencies (pytz, tabulate)
+```powershell
+PS> .\flight-tracker-all.ps1 -ShowAll
 
-### PowerShell Scripts
-- `flight-tracker.ps1` - Main tracker with colored output
-- `flight-tracker-with-delays.ps1` - Delay/early arrival tracking
-- `flight-tracker-utc.ps1` - UTC timezone conversions
-- `flight-map.ps1` - ASCII route visualization
-- `flight-tracker-all.ps1` - **All-in-one with command-line options**
-- `FlightLeg.ps1` - Reusable modular class
+════════════════════════════════════════
+    ✈️  FLIGHT TRACKER - SFO TO JKT  ✈️
+════════════════════════════════════════
 
-### Extras
-- `windows-terminal-theme.json` - Green-Yellow color scheme
-- `README-PowerShell.md` - PowerShell-specific documentation
+📍 OUTBOUND FLIGHTS
+
+Flight: ANA 107 (SFO → HND)
+  Depart: 2026-07-02 01:40 AM PDT
+  Arrive: 2026-07-03 04:25 AM JST
+  Status: ⏱️  Scheduled
+  Seats : 34A, 34C
+
+⏳ Layover: 5:50 in Tokyo (HND)
+
+Flight: ANA 855 (HND → CGK)
+  Depart: 2026-07-03 10:15 AM JST
+  Arrive: 2026-07-03 04:00 PM WIB
+  Status: ⏱️  Scheduled
+  Seats : 21A, 21B
+
+════════════════════════════════════════
+```
+</details>
+
+<details>
+<summary><b>🗺️ Route Map</b> (click to expand)</summary>
+
+```
+════════════════════════════════════════════════════════════
+                   🗺️  FLIGHT ROUTE MAP  🗺️
+════════════════════════════════════════════════════════════
+
+OUTBOUND: San Francisco → Jakarta (via Tokyo)
+
+    SFO (San Francisco)
+     |
+     | Flight ANA 107
+     | Duration: 10:45
+     |
+     ↓
+    HND (Tokyo Haneda)
+     |
+     | Layover: 5:50
+     |
+     | Flight ANA 855
+     | Duration: 7:45
+     |
+     ↓
+    CGK (Jakarta)
+
+════════════════════════════════════════════════════════════
+```
+</details>
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Installation
 
-### Python Version
+### Option 1: pip (Recommended)
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+pip install git+https://github.com/tjpools/SFO-JKT.git
+flight-tracker  # Run from anywhere!
+```
 
-# Run the tracker
+### Option 2: Clone & Use
+```bash
+git clone https://github.com/tjpools/SFO-JKT.git
+cd SFO-JKT
+
+# Python
+pip install -r requirements.txt
+python flight_tracker.py
+
+# PowerShell
+.\flight-tracker-all.ps1 -ShowAll
+```
+
+### Option 3: PowerShell Module
+```powershell
+Import-Module .\FlightTools.psd1
+Show-FlightTracker -ShowAll
+```
+
+### Option 4: VS Code Tasks
+```
+Ctrl+Shift+B  # Run default tracker
+Ctrl+Shift+P → Tasks: Run Task  # Browse all tasks
+```
+
+See [PYTHON_PACKAGE.md](PYTHON_PACKAGE.md) and [TASK_RUNNER.md](TASK_RUNNER.md) for details.
+
+---
+
+## ⚡ Quick Start
+
+### Python
+```bash
 python flight_tracker.py
 ```
 
-### PowerShell Version
-
-#### Basic Tracker
+### PowerShell (Basic)
 ```powershell
 .\flight-tracker.ps1
 ```
 
-#### With Delays
+### PowerShell (All Features)
 ```powershell
-.\flight-tracker-with-delays.ps1
-```
-
-#### With UTC Conversions
-```powershell
-.\flight-tracker-utc.ps1
-```
-
-#### Route Map
-```powershell
-.\flight-map.ps1
-```
-
-#### All-in-One (Recommended!)
-```powershell
-# Basic output
-.\flight-tracker-all.ps1
-
-# With delay tracking
-.\flight-tracker-all.ps1 -ShowDelays
-
-# With UTC conversions
-.\flight-tracker-all.ps1 -ShowUTC
-
-# With route map
-.\flight-tracker-all.ps1 -ShowMap
-
-# Everything!
 .\flight-tracker-all.ps1 -ShowAll
 ```
 
 ---
 
-## ✈️ Flight Itinerary
+## 🎯 Features
 
-### Outbound (July 2-3, 2026)
-1. **ANA 107**: SFO → HND (10h 45m)
-   - Departure: 01:40 AM PDT | Arrival: 04:25 AM JST
-   - Seats: 34A, 34C
+<table>
+<tr>
+<td width="50%">
 
-2. **ANA 855**: HND → CGK (7h 45m)
-   - Layover: 5h 50m in Tokyo
-   - Departure: 10:15 AM JST | Arrival: 04:00 PM WIB
-   - Seats: 21A, 21B
+### 🐍 Python
+- ✅ Timezone-aware datetime handling
+- ✅ Beautiful table output (tabulate)
+- ✅ Next-flight status
+- ✅ Layover calculations
+- ✅ UTC conversions
+- ✅ pip-installable package
+- ✅ Cross-platform (Win/Mac/Linux)
 
-### Return (July 19-20, 2026)
-3. **ANA 856**: CGK → HND (7h 25m)
-   - Departure: 09:25 PM WIB | Arrival: 06:50 AM JST
-   - Seats: 21A, 21B
+</td>
+<td width="50%">
 
-4. **ANA 108**: HND → SFO (11h 00m)
-   - Layover: 16h 05m in Tokyo
-   - Departure: 10:55 PM JST | Arrival: 04:55 PM PDT
-   - Seats: 32A, 32C
+### ⚡ PowerShell
+- ✅ Zero dependencies
+- ✅ Color-coded output
+- ✅ Delay tracking
+- ✅ ASCII route map
+- ✅ Modular FlightLeg class
+- ✅ Command-line switches
+- ✅ Importable module
 
----
+</td>
+</tr>
+</table>
 
-## 🎨 Windows Terminal Theme
-
-To apply the beautiful **GreenYellowFlight** color scheme:
-
-1. Open Windows Terminal
-2. Press `Ctrl + ,` (Settings)
-3. Click **"Open JSON file"** (bottom-left)
-4. Find the `"schemes"` array
-5. Copy the contents of `windows-terminal-theme.json` into the array
-6. In your PowerShell profile, set:
-   ```json
-   {
-	 "colorScheme": "GreenYellowFlight"
-   }
-   ```
-7. Save and reload!
+### 🛠️ Development Tools
+- ✅ **GitHub Actions CI** - Auto-test on push
+- ✅ **VS Code Tasks** - One-click execution (`Ctrl+Shift+B`)
+- ✅ **PowerShell Module** - `Import-Module FlightTools`
+- ✅ **Local Test Suite** - `test-all.ps1` validates everything
+- ✅ **Windows Terminal Theme** - Custom green/yellow color scheme
 
 ---
 
-## 🎯 Features Comparison
+## 📦 What's Inside
 
-| Feature | Python | PowerShell Basic | PowerShell All-in-One |
-|---------|--------|------------------|----------------------|
-| Flight Display | ✅ | ✅ | ✅ |
-| Timezone Conversions | ✅ | ❌ | ✅ (with `-ShowUTC`) |
-| Status Tracking | ✅ | ✅ | ✅ |
-| Delay Calculations | ❌ | ❌ | ✅ (with `-ShowDelays`) |
-| Route Map | ❌ | ❌ | ✅ (with `-ShowMap`) |
-| Layover Info | ✅ | ❌ | ✅ |
-| Table Output | ✅ | ❌ | ❌ |
-| Color Output | ✅ | ✅ | ✅ |
-| UTC Display | ✅ | ❌ | ✅ (with `-ShowUTC`) |
+```
+SFO-JKT/
+├── 🐍 Python Implementation
+│   ├── flight_tracker.py          # Main tracker app
+│   ├── requirements.txt           # Dependencies
+│   └── pyproject.toml             # Package config
+│
+├── ⚡ PowerShell Scripts
+│   ├── flight-tracker.ps1         # Basic tracker
+│   ├── flight-tracker-all.ps1     # All-in-one (recommended)
+│   ├── flight-tracker-with-delays.ps1
+│   ├── flight-tracker-utc.ps1
+│   ├── flight-map.ps1             # ASCII map
+│   ├── FlightLeg.ps1              # Modular class
+│   └── utc-converter.ps1
+│
+├── 📦 PowerShell Module
+│   ├── FlightTools.psd1           # Module manifest
+│   └── FlightTools.psm1           # Module code
+│
+├── 🔧 Development Tools
+│   ├── .vscode/tasks.json         # VS Code integration
+│   ├── .github/workflows/test.yml # CI pipeline
+│   └── test-all.ps1               # Local verification
+│
+├── 🎨 Extras
+│   └── windows-terminal-theme.json
+│
+└── 📚 Documentation
+	├── README.md                   # You are here
+	├── QUICKSTART.md
+	├── PYTHON_PACKAGE.md
+	├── TASK_RUNNER.md
+	├── README-PowerShell.md
+	└── [and 10+ more docs]
+```
 
 ---
 

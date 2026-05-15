@@ -1,0 +1,152 @@
+name: Test Flight Tracker Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-python:
+    name: Test Python Tracker
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Test imports
+      run: |
+        python -c "import pytz; print('✅ pytz imported')"
+        python -c "import tabulate; print('✅ tabulate imported')"
+        python -c "from datetime import datetime; import pytz; print('✅ datetime works')"
+
+    - name: Run flight tracker
+      run: |
+        python flight_tracker.py > /dev/null
+        echo "✅ Python tracker executed successfully"
+
+    - name: Verify output
+      run: |
+        output=$(python flight_tracker.py)
+        if echo "$output" | grep -q "ANA 107"; then
+          echo "✅ Flight data generated correctly"
+        else
+          echo "❌ Flight data missing"
+          exit 1
+        fi
+
+  test-powershell:
+    name: Test PowerShell Scripts
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Test basic tracker
+      shell: pwsh
+      run: |
+        $output = .\flight-tracker.ps1 2>&1 | Out-String
+        if ($output -match "ANA 107") {
+          Write-Host "✅ Basic tracker works"
+        } else {
+          Write-Error "❌ Basic tracker failed"
+          exit 1
+        }
+
+    - name: Test all-in-one tracker
+      shell: pwsh
+      run: |
+        $output = .\flight-tracker-all.ps1 -ShowAll 2>&1 | Out-String
+        if ($output -match "ANA 107") {
+          Write-Host "✅ All-in-one tracker works"
+        } else {
+          Write-Error "❌ All-in-one tracker failed"
+          exit 1
+        }
+
+    - name: Test delay tracker
+      shell: pwsh
+      run: |
+        $output = .\flight-tracker-with-delays.ps1 2>&1 | Out-String
+        if ($output -match "Schedule") {
+          Write-Host "✅ Delay tracker works"
+        } else {
+          Write-Error "❌ Delay tracker failed"
+          exit 1
+        }
+
+    - name: Test UTC converter
+      shell: pwsh
+      run: |
+        $output = .\flight-tracker-utc.ps1 2>&1 | Out-String
+        if ($output -match "UTC") {
+          Write-Host "✅ UTC tracker works"
+        } else {
+          Write-Error "❌ UTC tracker failed"
+          exit 1
+        }
+
+    - name: Test route map
+      shell: pwsh
+      run: |
+        $output = .\flight-map.ps1 2>&1 | Out-String
+        if ($output -match "SFO") {
+          Write-Host "✅ Route map works"
+        } else {
+          Write-Error "❌ Route map failed"
+          exit 1
+        }
+
+  lint-python:
+    name: Lint Python Code
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pylint
+
+    - name: Run flake8
+      run: |
+        flake8 flight_tracker.py --max-line-length=100 --extend-ignore=E501 || true
+
+    - name: Check Python syntax
+      run: |
+        python -m py_compile flight_tracker.py
+        echo "✅ Python syntax valid"
+
+  build-status:
+    name: Build Status Summary
+    runs-on: ubuntu-latest
+    needs: [test-python, test-powershell, lint-python]
+
+    steps:
+    - name: All tests passed
+      run: |
+        echo "✅ All tests passed!"
+        echo "🎉 SFO-JKT Flight Tracker is working correctly"
