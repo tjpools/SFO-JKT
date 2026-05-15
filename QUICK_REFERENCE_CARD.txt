@@ -1,0 +1,166 @@
+╔════════════════════════════════════════════════════════════════╗
+║                  🚀 SFO-JKT QUICK REFERENCE                    ║
+║                     github.com/tjpools/SFO-JKT                 ║
+╚════════════════════════════════════════════════════════════════╝
+
+┌────────────────────────────────────────────────────────────────┐
+│  📦 INSTALLATION                                               │
+└────────────────────────────────────────────────────────────────┘
+
+pip install git+https://github.com/tjpools/SFO-JKT.git
+flight-tracker
+
+# OR clone and use directly:
+git clone https://github.com/tjpools/SFO-JKT.git
+cd SFO-JKT
+
+┌────────────────────────────────────────────────────────────────┐
+│  🐍 PYTHON COMMANDS                                            │
+└────────────────────────────────────────────────────────────────┘
+
+python flight_tracker.py              # Full tracker
+pip install -e .                      # Install locally
+flight-tracker                        # Run after install
+sfo-jkt                               # Short alias
+
+┌────────────────────────────────────────────────────────────────┐
+│  ⚡ POWERSHELL COMMANDS (Standalone)                           │
+└────────────────────────────────────────────────────────────────┘
+
+.\flight-tracker.ps1                  # Basic tracker
+.\flight-tracker-all.ps1              # All-in-one (basic)
+.\flight-tracker-all.ps1 -ShowDelays  # With delay tracking
+.\flight-tracker-all.ps1 -ShowUTC     # With UTC times
+.\flight-tracker-all.ps1 -ShowMap     # With route map
+.\flight-tracker-all.ps1 -ShowAll     # Everything!
+.\flight-map.ps1                      # Just the map
+.\flight-tracker-with-delays.ps1      # Just delays
+.\flight-tracker-utc.ps1              # Just UTC
+.\test-all.ps1                        # Run test suite
+
+┌────────────────────────────────────────────────────────────────┐
+│  📦 POWERSHELL MODULE                                          │
+└────────────────────────────────────────────────────────────────┘
+
+Import-Module .\FlightTools.psd1     # Load module
+flights                               # Quick alias (ShowAll)
+Show-FlightTracker -ShowAll           # Full function call
+Show-FlightMap                        # Route map
+Show-FlightDelays                     # Delay tracking
+Show-FlightUTC                        # UTC conversions
+Get-FlightItinerary                   # Get raw data
+Test-FlightTools                      # Run tests
+Get-Command -Module FlightTools       # List all commands
+
+┌────────────────────────────────────────────────────────────────┐
+│  🔧 VS CODE INTEGRATION                                        │
+└────────────────────────────────────────────────────────────────┘
+
+Ctrl+Shift+B                          # Run default task
+Ctrl+Shift+P → "Tasks: Run Task"      # Browse all tasks
+
+Available tasks:
+  - Flight Tracker (PowerShell)       ⭐ Default
+  - Flight Tracker (Python)
+  - Flight Map
+  - Flight Delays
+  - Flight UTC
+  - Run All Tests
+  - Build Python Package
+  - Install Python Dependencies
+
+┌────────────────────────────────────────────────────────────────┐
+│  🌐 CI/CD & AUTOMATION                                         │
+└────────────────────────────────────────────────────────────────┘
+
+GitHub Actions runs automatically on push:
+  ✅ Python 3.8, 3.9, 3.10, 3.11, 3.12 matrix
+  ✅ PowerShell validation (windows-latest)
+  ✅ Syntax checking and linting
+
+Local testing before push:
+  .\test-all.ps1                      # Should show 10/10 PASS
+
+┌────────────────────────────────────────────────────────────────┐
+│  📚 DOCUMENTATION MAP                                          │
+└────────────────────────────────────────────────────────────────┘
+
+START_HERE.md              ← Begin here
+QUICKSTART.md              ← 60-second guide
+PRODUCTION_READY.md        ← Mission summary (this project)
+PYTHON_PACKAGE.md          ← pip install guide
+TASK_RUNNER.md             ← VS Code tasks
+README-PowerShell.md       ← PowerShell deep-dive
+SETUP.md                   ← Environment setup
+GITHUB_SETUP.md            ← Repo setup
+CONTRIBUTING.md            ← How to contribute
+CHANGELOG.md               ← Version history
+
+┌────────────────────────────────────────────────────────────────┐
+│  🔗 QUICK LINKS                                                │
+└────────────────────────────────────────────────────────────────┘
+
+Repository: https://github.com/tjpools/SFO-JKT
+Issues:     https://github.com/tjpools/SFO-JKT/issues
+Clone:      git clone https://github.com/tjpools/SFO-JKT.git
+Install:    pip install git+https://github.com/tjpools/SFO-JKT.git
+
+┌────────────────────────────────────────────────────────────────┐
+│  🎨 WINDOWS TERMINAL THEME                                     │
+└────────────────────────────────────────────────────────────────┘
+
+1. Copy windows-terminal-theme.json contents
+2. Open Windows Terminal → Settings → Open JSON
+3. Paste into "schemes" array
+4. Set profile colorScheme to "GreenYellowFlight"
+
+┌────────────────────────────────────────────────────────────────┐
+│  🚀 PACKAGE BUILDING                                           │
+└────────────────────────────────────────────────────────────────┘
+
+# Python package
+python -m build                       # Creates dist/
+python -m twine upload dist/*         # Publish to PyPI
+
+# PowerShell module
+# Already ready! Just Import-Module
+
+┌────────────────────────────────────────────────────────────────┐
+│  💡 PRO TIPS                                                   │
+└────────────────────────────────────────────────────────────────┘
+
+• Use "flights" alias after importing FlightTools module
+• VS Code Ctrl+Shift+B runs default tracker instantly
+• GitHub Actions tests run on every push automatically
+• test-all.ps1 validates everything before committing
+• pip install -e . for local development with live edits
+• Module aliases: flights, flight-map, flight-delays, flight-utc
+
+┌────────────────────────────────────────────────────────────────┐
+│  📊 PROJECT STATS                                              │
+└────────────────────────────────────────────────────────────────┘
+
+Files:         35+
+Languages:     Python, PowerShell
+Docs:          15+ markdown files
+Tests:         Local suite + GitHub Actions CI
+License:       MIT
+Status:        🚀 PRODUCTION READY
+
+┌────────────────────────────────────────────────────────────────┐
+│  ✨ WHAT'S SPECIAL                                             │
+└────────────────────────────────────────────────────────────────┘
+
+✅ Zero-config: Works out of the box
+✅ Dual-language: Python + PowerShell
+✅ CI/CD: Automated testing on push
+✅ Packaged: pip-installable + PowerShell module
+✅ Editor-integrated: VS Code tasks ready
+✅ Documented: 15+ comprehensive guides
+✅ Terminal-optimized: Custom color theme
+✅ Tested: Local + cloud validation
+
+╔════════════════════════════════════════════════════════════════╗
+║  Built with ❤️  by Terrence J McLaughlin (@tjpools)           ║
+║  License: MIT  •  Stars appreciated! ⭐                        ║
+╚════════════════════════════════════════════════════════════════╝
