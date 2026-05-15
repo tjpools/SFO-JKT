@@ -266,6 +266,13 @@ SFO-JKT/
 
 ---
 
+## 🌍 Languages / Bahasa
+
+- 🇺🇸 **English** - You are here
+- 🇮🇩 **[Bahasa Indonesia](README.id.md)** - Versi Indonesia
+
+---
+
 ## 📖 Usage Examples
 
 ### Python - Full Output
